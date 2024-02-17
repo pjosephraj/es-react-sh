@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+
+
+.container-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.es-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.es-nav li {
+  display: inline-block;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.es-nav-item {
+  background: #fff;
+  border: 1px solid lightskyblue;
+  border-bottom: none;
+  outline: none;
+  padding: .5rem 1.5rem;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  border-radius: 4px 4px 0 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.es-nav-item:hover, .es-nav li.active .es-nav-item {
+  background: lightskyblue;
+}
+
+main {
+  border: 1px solid lightskyblue;
+  padding: .5rem 1rem;
+  min-width: 320px;
+}
+
+.edit-wrapper {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.form-control {
+  padding: .5rem 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: .3rem;
 }
 
-.App-link {
-  color: #61dafb;
+.form-control label {
+  margin-right: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-control input {
+  font-size: 1.3rem;
+  padding: .5rem;
+  margin-top: .3rem;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  outline: none;
+  box-shadow: 0 0 0 lightskyblue;
+  transition: .2s ease-in-out;
 }
+
+.form-control input:focus {
+  border-color: lightskyblue;
+  box-shadow: 1px 1px 1px lightskyblue;
+}
+
+
