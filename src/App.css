@@ -4,6 +4,12 @@
   display: flex;
   justify-content: center;
   padding: 2rem 0;
+  min-width: 550px;
+}
+
+.es-nav {
+  display: flex;
+  justify-content: center;
 }
 
 .es-nav ul {
