@@ -1,5 +1,13 @@
-const Preview = ({ userDetails }) => {
+import {forwardRef, useImperativeHandle} from "react";
+
+const Preview = forwardRef(({ userDetails }, ref) => {
   const {photo, firstName, lastName, designation, phoneNumber, linkedInUsername, linkedInURL} = userDetails;
+
+  useImperativeHandle(ref, () => ({
+    log() {
+      console.log("Preview component child log");
+    }
+  }));
 
   return (<>
     <div
@@ -236,6 +244,6 @@ const Preview = ({ userDetails }) => {
     </div>
 
   </>)
-}
+});
 
 export default Preview;
