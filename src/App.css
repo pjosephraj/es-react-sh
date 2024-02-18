@@ -134,12 +134,72 @@ main {
   background: lightskyblue;
 }
 
-.btn-preview:hover, .btn-profile:hover {
+.btn-preview:hover, .btn-profile:hover, .btn-submit:hover {
   background: #59ff5f;
 }
 
-.btn-preview:hover {
+.btn-preview:hover, .btn-submit:hover {
   transform: scale(1.1);
+}
+
+.modal-wrap {
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0, .5);
+  transition: .2s ease-in-out;
+  display: none;
+}
+
+.modal-wrap.active {
+  display: flex;
+}
+
+.modal-container-wrap {
+  background: #fff;
+  margin-top: 6rem;
+  border-radius: 6px;
+}
+
+.modal-container {
+  padding: 1.5rem 2rem;
+  display: flex;
+}
+
+.modal-avatar {
+  margin-right: 2rem;
+}
+
+.modal-avatar svg {
+  display: none;
+}
+
+.modal-img img {
+  width: 56px;
+  height: 56px;
+}
+
+.btn-wrap-submit {
+  padding-bottom: 1rem;
+}
+
+.btn:disabled {
+  pointer-events: none;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid darkred;
+  color: darkred;
+  margin-right: 1rem;
+}
+
+.btn-cancel:hover {
+  background: darkred;
+  color: #fff;
 }
 
 
