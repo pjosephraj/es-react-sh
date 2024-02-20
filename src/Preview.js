@@ -2,28 +2,41 @@ import {forwardRef, useImperativeHandle, useRef} from "react";
 
 const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
   const previewRef = useRef();
+  const emailContainerRef = useRef();
   const { photo, firstName, lastName, designation, phoneNumber, linkedInUsername, linkedInURL } = userDetails;
 
   useImperativeHandle(ref, () => ({
     copyCode () {
       navigator.clipboard.writeText(previewRef.current.innerHTML)
         .then(() => {
-          onCopiedToClipBoard();
+          onCopiedToClipBoard('HTML code copied into clipboard!');
         })
         .catch((error) => {
           console.error('Error copying HTML content to clipboard:', error);
         });
+    },
+    copyDesign() {
+      const emailContainer = emailContainerRef.current;
+      if(emailContainer) {
+        const range = document.createRange();
+        range.selectNode(emailContainer);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        onCopiedToClipBoard('Design copied into clipboard!');
+      }
     }
   }));
 
   return (
     <div ref={previewRef}>
-      <div
+      <div ref={emailContainerRef}
         style={{ backgroundColor: "#fff", fontFamily: "sans-serif", color: "#333" }}>
         <table style={{ height: 1, padding: '10px' }}>
           <tbody>
           <tr>
-            <td style={{ paddingRight: '16px' }}>
+            <td style={{ paddingRight: '10px' }}>
               <div>
                 <div
                   style={{
@@ -33,11 +46,11 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
                     borderRadius: "50%"
                   }}
                 >
-                  <img
+                  {photo ? <img
                     style={{ width: '56px', display: "block" }}
                     src={photo}
                     alt=""
-                  />
+                  /> : <div style={{width: '56px', height: '56px', color: 'transparent'}}>&nbsp;</div>}
                 </div>
               </div>
               <div
@@ -48,7 +61,7 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
                   fontWeight: 700
                 }}
               >
-                <span style={{ color: "#666" }}>{firstName}</span>&nbsp;
+                <span style={{ color: "#346b80" }}>{firstName}</span>&nbsp;
                 <span style={{ color: "#346b80" }}>{lastName}</span>
               </div>
               <div
@@ -63,18 +76,11 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
                 {designation}
               </div>
             </td>
-            <td rowSpan={2} style={{ height: "100%", padding: '6px' }}>
-              <div
-                style={{
-                  width: 2,
-                  background: "#f80",
-                  height: "100%",
-                  margin: "10px 0"
-                }}
-              />
+            <td rowSpan={2} style={{ background: '#f80', padding: '0px 1px 0px 0px' }}>
+
             </td>
-            <td>
-              <div style={{ marginTop: '16px', marginBottom: '6px' }}>
+            <td style={{ paddingLeft: '18px'}}>
+              <div style={{ marginBottom: '6px' }}>
                 <img
                   width={'150px'}
                   style={{ display: "block" }}
@@ -104,7 +110,7 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
                           fontSize: '11px',
                           fontWeight: 700,
                           lineHeight: 1,
-                          display: "inline-block",
+                          display: "block",
                           color: "#346b80"
                         }}
                       >
@@ -120,7 +126,9 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
           </tr>
           <tr>
             <td>
-              <div style={{ color: "#666" }}>{phoneNumber}</div>
+              <div style={{ color: "#666" }}>
+                <span style={{fontSize: '13px'}}>{phoneNumber}</span>
+              </div>
               <div style={{ marginBottom: '4px' }}>
                 <a
                   style={{ textDecoration: "none" }}
@@ -143,7 +151,7 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
                           fontSize: '11px',
                           fontWeight: 700,
                           lineHeight: 1,
-                          display: "inline-block",
+                          display: "block",
                           color: "#346b80"
                         }}
                       >
@@ -156,8 +164,8 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
                 </a>
               </div>
             </td>
-            <td>
-              <div style={{ color: "#666" }}>
+            <td style={{ paddingLeft: '18px'}}>
+              <div style={{ color: '#666', fontSize: '12px' }}>
                 <div>Palo Alto, CA</div>
                 <div>Seattle, WA</div>
                 <div>Bengaluru, India</div>
@@ -168,7 +176,7 @@ const Preview = forwardRef(({ userDetails, onCopiedToClipBoard }, ref) => {
             <td style={{ paddingTop: '14px' }}>
               <a
                 style={{ textDecoration: "none", display: "inline-block" }}
-                href=""
+                href="https://www.linkedin.com/posts/smarthub-ai_forbesindia-dglobalist-dgems2023-activity-7123183608080551936-j07Y/"
               >
                 <img
                   style={{

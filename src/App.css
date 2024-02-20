@@ -37,6 +37,10 @@
   font-size: 1.5rem;
 }
 
+.es-nav-item:disabled {
+  pointer-events: none  ;
+}
+
 .es-nav-item:hover, .es-nav li.active .es-nav-item {
   background: lightskyblue;
 }
@@ -84,6 +88,15 @@ main {
 
 .form-control label {
   margin-right: 1rem;
+  align-self: flex-start;
+  position: relative;
+}
+
+.form-control label.required:after {
+  position: absolute;
+  content: '*';
+  color: red;
+  right: -8px;
 }
 
 .form-control input {
@@ -104,7 +117,7 @@ main {
 
 .btn-wrap {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .btn {
@@ -182,8 +195,9 @@ main {
   height: 56px;
 }
 
-.btn-wrap-submit {
+.btn-download-wrap, .btn-wrap-submit {
   padding-bottom: 1rem;
+  justify-content: center;
 }
 
 .btn:disabled {
